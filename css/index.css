@@ -1,0 +1,200 @@
+
+nav input
+{
+	display: none;
+}
+ul
+{
+	list-style-type: none;
+	padding:0;
+	
+}
+a
+{
+	text-decoration: none;
+}
+
+.dropdown
+{
+	display: none;
+}
+
+.main .parent:hover .dropdown
+{
+	margin:5px 0 0 0; 
+	display: grid;
+    grid-auto-rows: auto;
+	grid-row-gap: 5px;
+
+}
+.grid-logo
+{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+
+}
+.main
+{
+	display: grid;
+	grid-row-gap: 8px;
+	
+
+}
+
+.parent
+{
+	padding: 5px;
+	
+
+}
+
+
+
+
+#toggle:checked ~ .main
+{
+	transition:transform 0.3s;
+	transform: translateX(0px);
+
+}
+.label-container
+{
+	display: grid;
+	justify-self:end;
+}
+
+.form-grid
+{
+	display: grid;
+	grid-auto-rows: auto;
+	row-gap:10px;
+
+}
+
+.form-wrapper
+{
+	width: 400px;
+}
+form input
+{
+	border:1px solid gray;
+	border-radius: 4px;
+	line-height: 1.5;
+	text-indent: 20px;
+}
+
+
+
+@media only screen and (max-width:768px)
+{
+	.main
+	{
+	width: 250px;
+	transform: translateX(-290px);
+	
+	background-color: #edece8;
+	padding: 20px;
+	}
+	.dropdown
+	{
+		padding-left: 20px;
+	}
+}
+.options
+{
+	display: grid;
+	grid-template-columns: auto auto;
+	column-gap: 10px;
+	align-items: center;
+}
+.gridm
+{
+	display: grid;
+	grid-template-columns: auto auto;
+	column-gap: 25px;
+	justify-content: left;
+}
+
+.form-master > input
+{
+	display: none;
+}
+.form-master
+{
+	display: grid;
+	grid-auto-rows: auto;
+	grid-row-gap: 10px;
+}
+
+.form-register,.form-login
+{
+	display: none;
+}
+
+.login,.register
+{
+	width: 10px;
+	height:10px;
+	background-color: gray;
+	display: block;
+	border-radius: 50%;
+}
+
+
+#register:checked ~  .form-register
+{
+	display: grid;
+}
+#login:checked ~  .form-login
+{
+	display: grid;
+}
+
+#register:checked ~  .gridm .options .register
+{
+	background-color: black;
+}
+#login:checked ~  .gridm .options .login
+{
+	background-color: black;
+}
+
+
+
+
+@media only screen and (min-width:769px)
+{
+	.main
+	{
+		display: grid;
+		grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
+		grid-template-rows: auto;
+		justify-items:center ;
+	}
+	.label-container
+	{
+		display:none; 
+	}
+	.grid-main
+	{
+		display: grid;
+		grid-template-columns: 1fr 3fr;
+	}
+	.grid-logo
+	{
+		grid-template-columns: auto;
+	}
+	li
+	{
+		position: relative;
+	}
+	.dropdown
+	{
+		position: absolute;
+		left: calc(50% - 32px);
+		width: 100px;
+	}
+
+
+}
