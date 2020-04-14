@@ -7,33 +7,33 @@ function display_menus()
 	$result=$conn->query($query);
 	$row =$result->fetch_all(MYSQLI_ASSOC);
 	$items=$row;
-   
-echo "<ul class='main'>";
-    foreach($items as $item){
-    	if($item['parent_id'] == 0)
-    	{
-    		echo  "<li class='parent'><a href=''>". $item['name']."</a>";
-    		$id = $item['id'];
-    		sub($items,$id);
-    		echo "</li>";
-    	}
-    	
-    }
+
+	echo "<ul class='main'>";
+	foreach($items as $item){
+		if($item['parent_id'] == NULL)
+		{
+			echo  "<li class='parent'><a href=''>". $item['name']."</a>";
+			$id = $item['id'];
+			sub($items,$id);
+			echo "</li>";
+		}
+
+	}
 	
-echo "</ul>";	
+	echo "</ul>";	
 
 }
 
 function sub($items,$id)
 { echo "<ul class='dropdown'>";
-	foreach ($items as $item) {
-		if($item['parent_id'] == $id)
-		{
-			echo  "<li><a href=''>". $item['name']."</a>";
-			sub($items,$item['id']);
-		}
+foreach ($items as $item) {
+	if($item['parent_id'] == $id)
+	{
+		echo  "<li><a href=''>". $item['name']."</a>";
+		sub($items,$item['id']);
 	}
-	echo "</ul>";
+}
+echo "</ul>";
 }
 
 
@@ -84,6 +84,7 @@ function sub($items,$id)
 
 function register()
 {
+	$msg="";
 	if(isset($_POST['submit']))
 	{
 		$username=$_POST['username'];
@@ -96,24 +97,23 @@ function register()
 
 		if($conn->error)
 		{
-			echo "query error"; 
+			$msg = "Could not register at the moment.Please Try again latter"; 
 		}
 		else
 		{
-			echo "query good";
+			$msg ="Registration successfull.Please login to continue";
 		}
 
 	}
+	return $msg;
 
 
 }
 
 
-
-
-
 function check()
 {
+	$msg="";
 	$conn=connect();
 	session_start();
 	if(isset($_COOKIE['cookie1']))
@@ -130,7 +130,7 @@ function check()
 		if(strlen($username)==0 || strlen($password)==0)
 		{
 			
-			echo "username and password can't be empty";
+			echo "username odbc_rollback(connection_id) password can't be empty";
 
 		}
 		else
@@ -147,14 +147,15 @@ function check()
 
 				if(password_verify($password,$row['password']))
 				{
-					echo "login successfull";
+					
 					login();
 					
 					
 				}
 				
 			}
-			echo "username or password incorrect";
+			$msg ="username or password incorrect";
+			echo $msg;
 
 		}
 	}
@@ -164,8 +165,9 @@ function check()
 
 function login()
 {
+	$name=$_POST["username"];
 
-	$_SESSION["user"]=$_POST["username"];
+	$_SESSION["user"]=$name;
 
 
 	$user="cookie1";
@@ -175,9 +177,42 @@ function login()
 
 	header("location:login.php");
 
-	die();
 
 }
+
+function secure()
+{
+	if(isset($_COOKIE['cookie1']))
+	{
+
+		if(!isset($_SESSION['user']))
+		{
+			$_SESSION['user']=$_COOKIE['cookie1'];
+		}
+
+		echo "logged in successfully"." ".$_SESSION['user'];
+
+	}
+	else
+	{
+		header("location:index.php");
+	}
+
+}
+
+
+function logout()
+{
+	if(isset($_POST['logout']))
+	{
+
+		setcookie("cookie1", "", time() - 3600);
+		header("location:index.php");
+	}
+
+}
+
+
 
 
 

@@ -1,3 +1,33 @@
+*
+{
+	font-family: 'Open Sans', sans-serif;
+}
+body
+{
+	background-color: rgb(232, 168, 124,0.7);
+}
+.background-wrapper
+{
+	background-color: #00B285;
+	height: 100vh;
+	transform: skew(0deg,-10deg) translateY(160px);
+}
+.background
+{
+	transform: skew(0deg,10deg) translateY(100px);
+	display: grid;
+	
+}
+
+nav
+{
+	background-color: lightgoldenrodyellow;
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+}
+
+
 
 nav input
 {
@@ -14,6 +44,13 @@ a
 	text-decoration: none;
 }
 
+p
+{
+	color: #fff;
+	font-size: 18px;
+
+}
+
 .dropdown
 {
 	display: none;
@@ -23,7 +60,7 @@ a
 {
 	margin:5px 0 0 0; 
 	display: grid;
-    grid-auto-rows: auto;
+	grid-auto-rows: auto;
 	grid-row-gap: 5px;
 
 }
@@ -72,35 +109,28 @@ a
 
 }
 
-.form-wrapper
+.btn
 {
-	width: 400px;
+	background-color: black;
+	color: #fff;
+	width: 100px;
+	text-indent: 0;
+	justify-self:center;
 }
+
+
+
 form input
 {
 	border:1px solid gray;
 	border-radius: 4px;
-	line-height: 1.5;
+	line-height: 2.5;
 	text-indent: 20px;
 }
 
 
 
-@media only screen and (max-width:768px)
-{
-	.main
-	{
-	width: 250px;
-	transform: translateX(-290px);
-	
-	background-color: #edece8;
-	padding: 20px;
-	}
-	.dropdown
-	{
-		padding-left: 20px;
-	}
-}
+
 .options
 {
 	display: grid;
@@ -136,7 +166,7 @@ form input
 {
 	width: 10px;
 	height:10px;
-	background-color: gray;
+	background-color: #fff;
 	display: block;
 	border-radius: 50%;
 }
@@ -144,11 +174,11 @@ form input
 
 #register:checked ~  .form-register
 {
-	display: grid;
+	display: block;
 }
 #login:checked ~  .form-login
 {
-	display: grid;
+	display: block;
 }
 
 #register:checked ~  .gridm .options .register
@@ -165,6 +195,25 @@ form input
 
 @media only screen and (min-width:769px)
 {
+
+	.background
+	{
+		display: grid;
+		justify-content: center;
+	}
+	.form-wrapper
+	{
+		width: 500px;
+		border: 1px solid #fff;
+		padding: 60px 20px 60px 20px;
+		border-radius: 11px;
+		border-top-width: 4px;
+		text-align: center;
+
+	}
+
+
+
 	.main
 	{
 		display: grid;
@@ -197,4 +246,19 @@ form input
 	}
 
 
+}
+@media only screen and (max-width:768px)
+{
+	.main
+	{
+		width: 250px;
+		transform: translateX(-290px);
+
+		background-color: #edece8;
+		padding: 20px;
+	}
+	.dropdown
+	{
+		padding-left: 20px;
+	}
 }
